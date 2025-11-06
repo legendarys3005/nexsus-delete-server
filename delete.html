@@ -95,7 +95,7 @@
                     <p class="text-base font-medium text-white">Email Address</p>
                     <input
                         class="form-input h-14 w-full rounded-lg border border-zinc-700 bg-zinc-900 p-4 text-base text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        placeholder="Enter your email" type="email" value="" />
+                        placeholder="Enter your email" type="email" value="" id="email-text-box"/>
                 </label>
                 <!-- TextField for Password -->
                 <label class="flex flex-col gap-2">
@@ -115,7 +115,7 @@
             <div class="flex w-full flex-col items-stretch gap-3 border-t border-zinc-800 pt-8">
                 <button
                     class="flex h-12 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-destructive px-5 text-base font-bold text-white transition-colors hover:bg-destructive/90"
-                    id="delete-button" onclick="showPage('done')">
+                    id="delete-button" onclick="sendDeletionRequest()">
                     <span class="truncate">Permanently Delete My Account</span>
                 </button>
             </div>
