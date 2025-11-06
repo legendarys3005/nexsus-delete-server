@@ -8,7 +8,7 @@ async function sendDeletionRequest(){
         const email = document.getElementById('email-text-box').value.trim();
         const password = document.getElementById('password-text-box').value;
 
-        const response = await fetch('https://nonperfected-erasmo-centauric.ngrok-free.dev/delete-account',{
+        const response = await fetch('https://nexsus-api.onrender.com/delete-account',{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
