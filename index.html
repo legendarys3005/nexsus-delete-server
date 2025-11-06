@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="shortcut icon" href="https://ik.imagekit.io/6q4aeq5oo/Brands/Nexsus.png?updatedAt=1736883967621" type="image/x-icon">
+    <link rel="shortcut icon" href="https://ik.imagekit.io/6q4aeq5oo/Brands/Nexsus.png?updatedAt=1736883967621"
+        type="image/x-icon">
     <script src="delete.js"></script>
     <script>
         tailwind.config = {
@@ -41,17 +42,39 @@
             user-select: none;
         }
 
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #d93f3d;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 12px;
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(100%);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
         #delete-button {
             transition: 0.2s ease;
         }
 
         #delete-button:hover {
-            /* background-color: gray; */
             transform: scale(1.01);
         }
 
         #delete-button:active {
-            background-color: gray;
+            background-color: #808080;
             transform: scale(0.97);
         }
 
@@ -95,7 +118,7 @@
                     <p class="text-base font-medium text-white">Email Address</p>
                     <input
                         class="form-input h-14 w-full rounded-lg border border-zinc-700 bg-zinc-900 p-4 text-base text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        placeholder="Enter your email" type="email" value="" id="email-text-box"/>
+                        placeholder="Enter your email" type="email" value="" id="email-text-box" />
                 </label>
                 <!-- TextField for Password -->
                 <label class="flex flex-col gap-2">
@@ -103,7 +126,7 @@
                     <div class="relative flex w-full items-stretch">
                         <input
                             class="form-input h-14 w-full rounded-lg border border-zinc-700 bg-zinc-900 p-4 pr-12 text-base text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
-                            placeholder="Enter your password" type="password" value="" id="password-text-box"/>
+                            placeholder="Enter your password" type="password" value="" id="password-text-box" />
                         <button id="toggle-password" onclick="togglePassword()"
                             class="absolute inset-y-0 right-0 flex items-center pr-4 text-zinc-400 hover:text-white">
                             <span class="material-symbols-outlined" id="visibility">visibility_off</span>
@@ -125,14 +148,16 @@
             </div>
         </div>
     </div>
-    <div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4" id="done" style="display: none;">
-            <!-- PageHeading -->
-            <div class="flex flex-col gap-3 text-center">
-                <h1 class="text-4xl font-black tracking-tighter text-white">Delete request sent</h1>
-                <p class="text-base font-normal text-zinc-400">
-                    Your account deletion request has been submitted. You’ll receive an email once the process is complete.
-                </p>
-            </div>
+    <div id="snackbar">Data</div>
+    <div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4" id="done"
+        style="display: none;">
+        <!-- PageHeading -->
+        <div class="flex flex-col gap-3 text-center">
+            <h1 class="text-4xl font-black tracking-tighter text-white">Delete request sent</h1>
+            <p class="text-base font-normal text-zinc-400">
+                Your account deletion request has been submitted. You’ll receive an email once the process is complete.
+            </p>
+        </div>
     </div>
 </body>
 

@@ -1,28 +1,58 @@
 const COOLDOWN_DAYS = 90;
 const REQUEST_KEY = "deleteRequestTime";
 
-// window.onload = checkDeleteStatus
+window.onload = checkDeleteStatus
 
-async function sendDeletionRequest(){
-    try{
+async function sendDeletionRequest() {
+    const button = document.getElementById('delete-button');
+    try {
         const email = document.getElementById('email-text-box').value.trim();
         const password = document.getElementById('password-text-box').value;
 
-        const response = await fetch('https://nexsus-api.onrender.com/delete-account',{
+        button.disabled = true;
+        button.style.opacity = 0.5;
+        button.style.backgroundColor = "#808080";
+        button.style.cursor = "not-allowed";
+
+        if (email === "") {
+            throw "Email field is empty";
+        }
+        if (password === "") {
+            throw "Password field is empty";
+        }
+
+        const response = await fetch('https://nexsus-api.onrender.com/delete-account', {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email, password}),
+            body: JSON.stringify({ email, password }),
         });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw data.message['message'] || "Something went Wrong";
+        }
 
         showPage();
 
-        const data = await response.json();
         console.log("Server response: ", data)
-    }catch(e){
-        alert(e);
+    } catch (e) {
+        showSnackbar(e);
+        button.disabled = false;
+        button.style.opacity = 1;
+        button.style.backgroundColor = "#d93f3d";
+        button.style.cursor = "pointer";
     }
+}
+function showSnackbar(message) {
+    const snackbar = document.getElementById("snackbar");
+    snackbar.textContent = message;
+    snackbar.classList.add("show")
+    setTimeout(() => {
+        snackbar.classList.remove("show");
+    }, 3000); // disappears after 3 seconds
 }
 
 function showPage() {
