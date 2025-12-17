@@ -35,7 +35,7 @@ async function sendDeletionRequest() {
             throw data.message['message'] || "Something went Wrong";
         }
 
-        showPage();
+        showPostDeletationPage();
 
         console.log("Server response: ", data)
     } catch (e) {
@@ -55,9 +55,9 @@ function showSnackbar(message) {
     }, 3000); // disappears after 3 seconds
 }
 
-function showPage() {
+function showPostDeletationPage() {
     document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    document.getElementById('done').style.display = 'block';
+    document.getElementById('done').style.display = 'flex';
     document.getElementById('land').style.display = 'none';
 
     localStorage.setItem(REQUEST_KEY, Date.now());
@@ -70,8 +70,9 @@ function checkDeleteStatus() {
         const elapsedDays = (Date.now() - parseInt(storedTime)) / (1000 * 60 * 60 * 24);
         if (elapsedDays < COOLDOWN_DAYS) {
             // Still within 90-day cooldown
-            document.getElementById('done').style.display = 'block';
+            document.getElementById('done').style.display = 'flex';
             document.getElementById('land').style.display = 'none';
+            console.log(`Days left before next submit: ${Math.trunc(elapsedDays)}`);
             return;
         } else {
             // Cooldown expired, allow form again
@@ -80,8 +81,8 @@ function checkDeleteStatus() {
     }
 
     // Default view (show delete form)
-    document.getElementById('land').style.display = 'block';
-    document.getElementById('done').style.display = 'none';
+    document.getElementById('land').style.display = "flex";
+    document.getElementById('done').style.display = "none";
 }
 
 
