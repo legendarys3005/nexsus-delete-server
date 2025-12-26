@@ -21,7 +21,7 @@ async function sendDeletionRequest() {
             throw "Password field is empty";
         }
 
-        const response = await fetch('https://nexsus-api.onrender.com/delete-account', {
+        const response = await fetch('http://100.127.129.89:3000/delete-account', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
