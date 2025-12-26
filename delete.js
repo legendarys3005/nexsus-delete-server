@@ -3,6 +3,8 @@ const REQUEST_KEY = "deleteRequestTime";
 
 window.onload = checkDeleteStatus
 
+server_url = "http://100.127.129.89:3000";
+
 async function sendDeletionRequest() {
     const button = document.getElementById('delete-button');
     try {
@@ -21,7 +23,7 @@ async function sendDeletionRequest() {
             throw "Password field is empty";
         }
 
-        const response = await fetch('http://100.127.129.89:3000/delete-account', {
+        const response = await fetch(`${server_url}/delete-account`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
