@@ -3,7 +3,7 @@ const REQUEST_KEY = "deleteRequestTime";
 
 window.onload = checkDeleteStatus
 
-server_url = "http://100.127.129.89:3000";
+server_url = "https://api.nexsus.in";
 
 async function sendDeletionRequest() {
     const button = document.getElementById('delete-button');
